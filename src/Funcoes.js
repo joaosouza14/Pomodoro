@@ -1,9 +1,11 @@
+// Função de formatação do texo do tempo
 export function formatTime(timeInSeconds) {
   const minutes = String(Math.floor(timeInSeconds / 60)).padStart(2, "0")
   const seconds = String(timeInSeconds % 60).padStart(2, "0")
   return `${minutes}:${seconds}`
 }
 
+// Função da Contagem
 export function iniciarContagem(setTimeLeft, setIsRunning, intervalRef) {
   intervalRef.current = setInterval(() => {
     setTimeLeft((prevTime) => {
@@ -17,6 +19,7 @@ export function iniciarContagem(setTimeLeft, setIsRunning, intervalRef) {
   }, 1000)
 }
 
+// Função de Resetar
 export function resetarContagem(
   setTimeLeft,
   setIsRunning,

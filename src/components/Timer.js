@@ -9,18 +9,21 @@ import {
 } from "react-native"
 import Svg, { Circle } from "react-native-svg"
 import { formatTime, iniciarContagem, resetarContagem } from "../Funcoes"
-import { LinearGradient } from "expo-linear-gradient"
 
-export default function Timer() {
-  const tempoInicial = 25 * 60
-  const [tempoRestante, setTempoRestante] = useState(tempoInicial)
-  const [tempoRodando, setTempoRodando] = useState(false)
+export default function Timer({
+  tempoRestante,
+  setTempoRestante,
+  tempoRodando,
+  setTempoRodando,
+  tempoInicial,
+}) {
+  // Parametros do timer
   const refIntervalo = useRef(null)
 
+  // Parametros do circulo de progresso animado
   const raio = 135
   const grosura = 7
   const circunferencia = 2 * Math.PI * raio
-
   const progressAnim = useRef(new Animated.Value(1)).current
 
   useEffect(() => {
@@ -39,13 +42,15 @@ export default function Timer() {
       useNativeDriver: false,
       easing: Easing.linear,
     }).start()
-  }, [tempoRestante])
+  }, [tempoRestante, tempoInicial])
 
-  const handleStartPause = () => {
+  // Função de chamada para Startar e Pausar o timer
+  const onPlayPause = () => {
     setTempoRodando((prev) => !prev)
   }
 
-  const handleReset = () => {
+  // Função de chamada para Resetar o timer
+  const onResetar = () => {
     resetarContagem(
       setTempoRestante,
       setTempoRodando,
@@ -60,8 +65,9 @@ export default function Timer() {
     outputRange: [0, circunferencia],
   })
 
+  // Renderização do componente
   return (
-    <TouchableOpacity onPress={handleStartPause} onLongPress={handleReset}>
+    <TouchableOpacity onPress={onPlayPause} onLongPress={onResetar}>
       <View style={[styles.container, styles.wrapper]}>
         {/* Circulo de progresso do timer */}
         <Svg width={raio * 2 + grosura} height={raio * 2 + grosura}>
@@ -100,6 +106,7 @@ export default function Timer() {
 // Componente animado do Circle
 const AnimatedCircle = Animated.createAnimatedComponent(Circle)
 
+// Estilização
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#141A31",
