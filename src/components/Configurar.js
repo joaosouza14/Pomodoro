@@ -18,10 +18,8 @@ export default function Configurar() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: "row",
     justifyContent: "space-around",
-    backgroundColor: "#000",
     padding: 3,
   },
   imagem: {

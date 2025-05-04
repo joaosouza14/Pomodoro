@@ -8,7 +8,7 @@ export default function Titulo() {
 
 const style = StyleSheet.create({
   titulo: {
-    color: "#fff",
+    color: "#D9E0F7",
     fontSize: 30,
     fontWeight: "bold",
   },
