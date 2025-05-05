@@ -5,20 +5,21 @@ export default function Barra({
   setTempoInicial,
   setTempoRestante,
   setTempoRodando,
+  tempos,
 }) {
   const [selecionado, setSelecionado] = useState("pomodoro")
 
   const botoes = [
-    { id: "pomodoro", label: "Pomodoro", tempo: 25 * 60 },
-    { id: "curta", label: "Pausa Curta", tempo: 5 * 60 },
-    { id: "longa", label: "Pausa Longa", tempo: 15 * 60 },
+    { id: "pomodoro", label: "Pomodoro", tempo: tempos.pomodoro },
+    { id: "curta", label: "Pausa Curta", tempo: tempos.curta },
+    { id: "longa", label: "Pausa Longa", tempo: tempos.longa },
   ]
 
   const handleSelecionar = (id, tempo) => {
     setSelecionado(id)
     setTempoInicial(tempo)
     setTempoRestante(tempo)
-    setTempoRodando(false) // pausa se estiver rodando
+    setTempoRodando(false)
   }
 
   return (

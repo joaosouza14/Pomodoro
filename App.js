@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { StyleSheet, Text, View } from "react-native"
+import { StyleSheet, View } from "react-native"
 import Titulo from "./src/components/Titulo"
 import Barra from "./src/components/Barra"
 import Timer from "./src/components/Timer"
@@ -10,6 +10,12 @@ export default function App() {
   const [tempoRestante, setTempoRestante] = useState(25 * 60)
   const [tempoRodando, setTempoRodando] = useState(false)
 
+  const [tempos, setTempos] = useState({
+    pomodoro: 25 * 60,
+    curta: 5 * 60,
+    longa: 15 * 60,
+  })
+
   return (
     <View style={styles.container}>
       <View style={styles.containerTitulo}>
@@ -17,6 +23,7 @@ export default function App() {
       </View>
       <View style={styles.containerBarra}>
         <Barra
+          tempos={tempos}
           setTempoInicial={setTempoInicial}
           setTempoRestante={setTempoRestante}
           setTempoRodando={setTempoRodando}
@@ -32,7 +39,7 @@ export default function App() {
         />
       </View>
       <View style={styles.containerConfigurar}>
-        <Configurar />
+        <Configurar setTempos={setTempos} />
       </View>
     </View>
   )
